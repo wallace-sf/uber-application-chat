@@ -23,7 +23,9 @@
     /* Modules */
     "baseUrl": "src",
     "paths": {
-      "~/*": ["*"]
+      "~/*": ["*"],
+      "~core": ["core/index.ts"],
+      "~core/*": ["core/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]

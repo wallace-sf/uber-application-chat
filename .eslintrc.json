@@ -53,7 +53,6 @@
         "groups": [
           "/^react$/",
           "module",
-          "/^@/",
           "/^~/",
           ["parent", "sibling", "index"]
         ],
@@ -95,7 +94,9 @@
       "@typescript-eslint/parser": [".ts", ".tsx"]
     },
     "import/resolver": {
-      "typescript": true,
+      "typescript": {
+        "project": "./tsconfig.app.json"
+      },
       "node": true
     },
     "react": {
