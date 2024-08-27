@@ -1,0 +1,14 @@
+commit-msg:
+  parallel: false
+  commands:
+    commitlint:
+      run: npx commitlint --edit
+pre-commit:
+  parallel: false
+  commands:
+    lint:
+      run: pnpm lint
+    format:
+      run: pnpm format
+    types:
+      run: pnpm types
