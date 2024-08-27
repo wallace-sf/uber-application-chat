@@ -22,4 +22,8 @@ export class Message extends Entity<Message, IMessageProps> {
   static new(props: IMessageProps): Message {
     return new Message(props);
   }
+
+  static bulk(messages: IMessageProps[]): Message[] {
+    return messages.map(Message.new);
+  }
 }
