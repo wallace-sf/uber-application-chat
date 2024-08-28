@@ -2,7 +2,7 @@ import { Entity, IEntityProps, DateTime, Text } from '../shared';
 import { type IUserProps, User } from '../user';
 
 export interface IMessageProps extends IEntityProps {
-  sent_at: string;
+  sent_at?: string;
   user: IUserProps;
   content: string;
 }
