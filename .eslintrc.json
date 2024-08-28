@@ -61,7 +61,18 @@
         "alphabetize": { "order": "asc", "ignoreCase": true }
       }
     ],
-    "import/extensions": "error",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never",
+        "json": "always",
+        "png": "always"
+      }
+    ],
     "react/react-in-jsx-scope": "off",
     "import/no-extraneous-dependencies": ["error"],
     "@typescript-eslint/no-use-before-define": "error",

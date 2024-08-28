@@ -24,6 +24,8 @@
     "baseUrl": "src",
     "paths": {
       "~/*": ["*"],
+      "~assets/*": ["assets/*"],
+      "~components/*": ["components/*"],
       "~core": ["core/index.ts"],
       "~core/*": ["core/*"]
     },

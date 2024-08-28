@@ -1,3 +1,5 @@
+import { DateTime as Luxon } from 'luxon';
+
 import { ValueObject } from '../base/ValueObject';
 
 export class DateTime extends ValueObject<DateTime, string> {
@@ -20,5 +22,9 @@ export class DateTime extends ValueObject<DateTime, string> {
     const isValid = DateTime.isValid(value);
 
     if (!isValid) throw new Error(DateTime.ERROR_INVALID_DATETIME);
+  }
+
+  get hm(): string {
+    return Luxon.fromISO(this._props.value).toFormat('T');
   }
 }
