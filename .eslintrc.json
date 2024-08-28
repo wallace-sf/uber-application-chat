@@ -12,7 +12,8 @@
     "plugin:react/recommended",
     "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:react-perf/recommended"
+    "plugin:react-perf/recommended",
+    "plugin:jsx-a11y/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -31,7 +32,8 @@
     "import",
     "react-hooks",
     "react-refresh",
-    "react-perf"
+    "react-perf",
+    "jsx-a11y"
   ],
   "rules": {
     "prettier/prettier": ["error"],

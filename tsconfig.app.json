@@ -26,7 +26,8 @@
       "~/*": ["*"],
       "~core": ["core/index.ts"],
       "~core/*": ["core/*"]
-    }
+    },
+    "typeRoots": ["src/modules", "node_modules/@types"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]
 }
