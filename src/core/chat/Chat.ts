@@ -16,4 +16,9 @@ export class Chat extends Entity<Chat, IChatProps> {
   static new(props: IChatProps): Chat {
     return new Chat(props);
   }
+
+  public add(message: Message) {
+    this.messages.push(message);
+    this.props.messages = this.messages.map((m) => m.props);
+  }
 }

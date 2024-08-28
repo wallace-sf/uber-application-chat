@@ -6,7 +6,13 @@ export default {
     './node_modules/preline/preline.js',
   ],
   theme: {
-    extend: {},
+    extend: {
+      spacing: {
+        128: '32rem',
+        144: '36rem',
+        160: '40rem',
+      },
+    },
   },
   plugins: [require('preline/plugin')],
 };

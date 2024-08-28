@@ -10,7 +10,7 @@ export const Other: FC<MessageRootProps> = ({ message }) => {
 
       <section className="bg-white border border-gray-200 rounded-2xl p-4 space-y-3">
         <p>
-          <span className="text-black text-sm font-bold">
+          <span className="text-gray-900 text-sm font-bold">
             {message.user.username.value}
           </span>{' '}
           <span className="text-gray-400">&#8226;</span>{' '}
