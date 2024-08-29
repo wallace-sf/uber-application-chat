@@ -1,50 +1,89 @@
-# React + TypeScript + Vite
+# Uber React.js Technical Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Technical challenge for candidate [Wallace Ferreira](https://www.linkedin.com/in/wallace-silva-ferreira/) applying for the Front-end Software Engineer position with a focus on React.js.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Demo](#demo)
+- [Requirements](#requirements)
+- [Features](#features)
+- [Principles and Paradigms](#principles-and-paradigms)
+- [Tools](#tools)
+- [Environment](#environment)
+- [Running Locally](#running-locally)
+- [About Me](#about-me)
 
-## Expanding the ESLint configuration
+## [Demo](#demo)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The demo for the challenge is available at this link: https://uber-application-chat.vercel.app/
 
-- Configure the top-level `parserOptions` property like this:
+## [Requirements](#requirements)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- To read the technical requirements of the challenge, [click here](./REQUIREMENTS.md).
+
+## [Features](#features)
+
+- Real-time chat with automatic nickname generation
+- Responsive design
+- Theme with [Preline](https://flowbite-admin-dashboard.vercel.app/layouts/sidebar/)
+
+## [Principles and Paradigms](#principles-and-paradigms)
+
+The follow principles and paradigms were strongly applied:
+
+- DDD
+- SOLID
+- DRY
+- Component Composition
+- Functional Paradigm
+- OOP Paradigm
+
+## [Tools](#tools)
+
+- [Vite.js](https://vitejs.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [MQTT](https://mqtt.org/)
+- [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/) + [Lint Staged](https://github.com/lint-staged/lint-staged) + [Left Hook](https://github.com/evilmartians/lefthook) + [Commitlint](https://github.com/conventional-changelog/commitlint)
+- [Formik](https://formik.org/)
+- [Preline](https://preline.co/)
+
+## [Environment](#environment)
+
+The project was developed using:
+
+- Node.js v18.17.1
+- PNPM v8.15.6
+- Ubuntu 22.04.3 LTS
+
+## [Running Locally](#running-locally)
+
+Clone the project:
+
+```bash
+git clone https://github.com/wallace-sf/faro-energy-technical-challenge.git
+
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Install the dependencies
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+pnpm install
 ```
+
+You need to specify the broker URL and topic in the environment variables. Create a .env file before starting the project. It's important to note that for development, the WebSocket should start with `ws`, and in production, with `wss`. Below is an example using the public broker that was used during development:
+
+```
+VITE_APP_MQTT_CHAT_BROKER_URL=ws://broker.mqttdashboard.com:8000/mqtt
+VITE_APP_MQTT_CHAT_TOPIC=5d81d305-8c1e-49ff-8905-34fcc2269440
+```
+
+Start the web application:
+
+```bash
+pnpm dev
+```
+
+## [About me](about-me)
+
+- [@wallace-sf](https://www.github.com/wallace-sf)
+- [Linkedin](https://www.linkedin.com/in/wallace-silva-ferreira/)
