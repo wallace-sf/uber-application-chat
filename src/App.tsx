@@ -45,7 +45,17 @@ function App() {
   }, [addMessage]);
 
   return (
-    <main className="container mx-auto max-w-2xl my-6">
+    <main className="container mx-auto max-w-2xl my-6 px-3 xl:px-0">
+      <h1 className="text-center font-medium hidden xl:block">
+        Made with ❤ por{' '}
+        <a
+          href="https://www.linkedin.com/in/wallace-silva-ferreira/"
+          className="text-primary underline"
+        >
+          Wallace Ferreira
+        </a>
+      </h1>
+      <br />
       <Chat.Root
         messages={messages}
         addMessage={addMessage}

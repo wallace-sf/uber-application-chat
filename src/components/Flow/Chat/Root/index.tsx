@@ -50,14 +50,14 @@ export const Root: FC<IChatRootProps> = ({ addMessage, messages, user }) => {
     <>
       <section
         ref={sectionRef}
-        className="border rounded-xl shadow-sm p-6 h-160 overflow-y-auto  [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300"
+        className="border rounded-xl shadow-sm p-6 h-[calc(100vh-200px)] 2xl:h-160 overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300"
       >
         <ul className="h-full space-y-5">{renderedMessages}</ul>
       </section>
       <Formik initialValues={INITIAL_VALUES} onSubmit={onSubmit}>
         {({ values, handleChange, handleBlur }) => (
           <Form>
-            <fieldset className="w-full space-y-3 mt-6">
+            <fieldset className="sticky xl:static w-full space-y-3 mt-6">
               <TextArea.WithSend
                 id="message"
                 value={values.message}

@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: '#3056d3',
+      },
       spacing: {
         128: '32rem',
         144: '36rem',
