@@ -5,7 +5,7 @@ import { MessageRootProps } from '../Types';
 
 export const My: FC<MessageRootProps> = ({ message }) => {
   return (
-    <li className="flex ms-auto gap-x-2 sm:gap-x-4">
+    <li className="flex ms-auto gap-x-2 sm:gap-x-4 last-of-type:pb-6">
       <section className="grow text-end space-y-3">
         <div className="inline-block bg-blue-600 rounded-2xl p-4 shadow-sm">
           <p>
