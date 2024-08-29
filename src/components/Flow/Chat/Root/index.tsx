@@ -6,26 +6,26 @@ import { Message as MessageUI } from '~/components/View/Message';
 import { TextArea } from '~components/Control/TextArea';
 import { Message } from '~core/message';
 
-import { useChat } from '../hooks';
 import { BUTTON_PROPS, INITIAL_VALUES } from './Constants';
 import { IChatRootProps, IValues } from './Types';
 
-export const Root: FC<IChatRootProps> = ({ user }) => {
-  const { chat, addMessage } = useChat();
-
+export const Root: FC<IChatRootProps> = ({ addMessage, messages, user }) => {
   const renderedMessages = useMemo(() => {
-    return chat.messages.map((message) =>
+    return messages.map((message) =>
       user?.id.value === message.user.id.value ? (
         <MessageUI.My key={message.id.value} message={message} />
       ) : (
         <MessageUI.Other key={message.id.value} message={message} />
       ),
     );
-  }, [chat, user]);
+  }, [messages, user]);
 
   const onSubmit = useCallback(
     (values: IValues, { resetForm }: FormikHelpers<IValues>) => {
-      addMessage(Message.new({ user: user.props, content: values.message }));
+      addMessage(
+        Message.new({ user: user.props, content: values.message }),
+        true,
+      );
       resetForm();
     },
     [addMessage, user.props],
@@ -33,7 +33,7 @@ export const Root: FC<IChatRootProps> = ({ user }) => {
 
   return (
     <>
-      <section className="border rounded-xl shadow-sm p-6 h-160 bg-chat-pattern bg-cover bg-center overflow-y-auto  [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300">
+      <section className="border rounded-xl shadow-sm p-6 h-160 overflow-y-auto  [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300">
         <ul className="h-full space-y-5">{renderedMessages}</ul>
       </section>
       <Formik initialValues={INITIAL_VALUES} onSubmit={onSubmit}>

@@ -1,4 +1,4 @@
-import { isAlphanumeric, isLength } from 'validator';
+import { isLength } from 'validator';
 
 import { ValueObject } from '../base/ValueObject';
 
@@ -15,7 +15,7 @@ export class Username extends ValueObject<Username, string> {
   }
 
   static isValid(value = ''): boolean {
-    return isAlphanumeric(value) && isLength(value, { min: 3, max: 20 });
+    return isLength(value, { min: 3, max: 20 });
   }
 
   private _validate(value?: string): void {
