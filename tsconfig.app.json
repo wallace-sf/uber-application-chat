@@ -27,7 +27,12 @@
       "~assets/*": ["assets/*"],
       "~components/*": ["components/*"],
       "~core": ["core/index.ts"],
-      "~core/*": ["core/*"]
+      "~core/*": ["core/*"],
+      "~hooks": ["hooks/index.ts"],
+      "~utils/*": ["utils/*"],
+      "~utils": ["utils/index.ts"],
+      "~mqttManager": ["mqttManager/index.ts"],
+      "~events": ["events/index.ts"]
     },
     "typeRoots": ["src/modules", "node_modules/@types"]
   },

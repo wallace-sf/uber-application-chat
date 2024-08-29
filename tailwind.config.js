@@ -7,9 +7,6 @@ export default {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'chat-pattern': "url('/chat-background-pattern.png')",
-      },
       spacing: {
         128: '32rem',
         144: '36rem',
