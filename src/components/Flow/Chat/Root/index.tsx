@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo } from 'react';
+import { FC, useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { Formik, Form, FormikHelpers } from 'formik';
 
@@ -10,6 +10,17 @@ import { BUTTON_PROPS, INITIAL_VALUES } from './Constants';
 import { IChatRootProps, IValues } from './Types';
 
 export const Root: FC<IChatRootProps> = ({ addMessage, messages, user }) => {
+  const sectionRef = useRef<HTMLTableSectionElement>(null);
+
+  const scrollToBottom = useCallback(() => {
+    if (sectionRef.current != null) {
+      sectionRef.current.scrollTo({
+        top: sectionRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
+  }, [sectionRef]);
+
   const renderedMessages = useMemo(() => {
     return messages.map((message) =>
       user?.id.value === message.user.id.value ? (
@@ -31,9 +42,16 @@ export const Root: FC<IChatRootProps> = ({ addMessage, messages, user }) => {
     [addMessage, user.props],
   );
 
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages.length, scrollToBottom]);
+
   return (
     <>
-      <section className="border rounded-xl shadow-sm p-6 h-160 overflow-y-auto  [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300">
+      <section
+        ref={sectionRef}
+        className="border rounded-xl shadow-sm p-6 h-160 overflow-y-auto  [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300"
+      >
         <ul className="h-full space-y-5">{renderedMessages}</ul>
       </section>
       <Formik initialValues={INITIAL_VALUES} onSubmit={onSubmit}>
