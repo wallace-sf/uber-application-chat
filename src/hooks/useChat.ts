@@ -15,7 +15,7 @@ export const useChat = () => {
 
       if (publish) {
         MqttManager.client?.publish(
-          '5d81d305-8c1e-49ff-8905-34fcc2269440',
+          import.meta.env.VITE_APP_MQTT_CHAT_TOPIC,
           JSON.stringify(message.props),
         );
       }
