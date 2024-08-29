@@ -10,9 +10,6 @@ import { Message, IMessageProps, User } from '~core';
 import { useChat } from '~hooks';
 import { MqttManager, generateMqttClientId } from '~mqttManager';
 
-const TOPIC = '5d81d305-8c1e-49ff-8905-34fcc2269440';
-const BROKER_URL = 'ws://broker.mqttdashboard.com:8000/mqtt';
-
 function App() {
   const user = useRef(User.new({ username: generateUsername('', 0, 15) }));
   const { messages, addMessage } = useChat();
@@ -20,13 +17,15 @@ function App() {
   useEffect(() => {
     window?.HSStaticMethods?.autoInit();
     MqttManager.connect(
-      BROKER_URL,
+      import.meta.env.VITE_APP_MQTT_CHAT_BROKER_URL,
       {
         clientId: generateMqttClientId(),
         keepalive: 60,
       },
       () => {
-        MqttManager.subscribe(TOPIC, { qos: 2 });
+        MqttManager.subscribe(import.meta.env.VITE_APP_MQTT_CHAT_TOPIC, {
+          qos: 2,
+        });
       },
     );
   }, []);
