@@ -47,7 +47,7 @@ function App() {
   return (
     <main className="container mx-auto max-w-2xl my-6 px-3 xl:px-0">
       <h1 className="text-center font-medium hidden xl:block">
-        Made with ❤ por{' '}
+        Made with ❤ by{' '}
         <a
           href="https://www.linkedin.com/in/wallace-silva-ferreira/"
           className="text-primary underline"
