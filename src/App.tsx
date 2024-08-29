@@ -1,35 +1,68 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useRef } from 'react';
+import 'preline/preline';
+
+import './index.css';
+
+import { generateUsername } from 'unique-username-generator';
+
+import { Chat } from '~components/Flow';
+import { Message, IMessageProps, User } from '~core';
+import { useChat } from '~hooks';
+import { MqttManager, generateMqttClientId } from '~mqttManager';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const user = useRef(User.new({ username: generateUsername('', 0, 15) }));
+  const { messages, addMessage } = useChat();
+
+  useEffect(() => {
+    window?.HSStaticMethods?.autoInit();
+    MqttManager.connect(
+      import.meta.env.VITE_APP_MQTT_CHAT_BROKER_URL,
+      {
+        clientId: generateMqttClientId(),
+        keepalive: 60,
+      },
+      () => {
+        MqttManager.subscribe(import.meta.env.VITE_APP_MQTT_CHAT_TOPIC, {
+          qos: 2,
+        });
+      },
+    );
+  }, []);
+
+  useEffect(() => {
+    MqttManager.onMessageArrived((message) => {
+      const detail = (message as Event & { detail: IMessageProps }).detail;
+
+      if (detail?.user?.id === user.current.id.value) return;
+
+      addMessage(Message.new(detail), false);
+    });
+
+    return () => {
+      MqttManager.offMessageArrived();
+    };
+  }, [addMessage]);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
+    <main className="container mx-auto max-w-2xl my-6 px-3 xl:px-0">
+      <h1 className="text-center font-medium hidden xl:block">
+        Made with ❤ por{' '}
+        <a
+          href="https://www.linkedin.com/in/wallace-silva-ferreira/"
+          className="text-primary underline"
+        >
+          Wallace Ferreira
         </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      </h1>
+      <br />
+      <Chat.Root
+        messages={messages}
+        addMessage={addMessage}
+        user={user.current}
+      />
+    </main>
+  );
 }
 
-export default App
+export default App;
